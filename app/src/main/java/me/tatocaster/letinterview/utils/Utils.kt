@@ -1,7 +1,6 @@
 package me.tatocaster.letinterview.utils
 
 import android.app.Activity
-import android.widget.EditText
 import com.tapadoo.alerter.Alerter
 import me.tatocaster.letinterview.R
 
@@ -19,9 +18,4 @@ fun showSuccessAlert(activity: Activity, message: String) {
             .setText(message)
             .setBackgroundColorRes(R.color.successBackground)
             .show()
-}
-
-fun EditText.setTextAndSelect(text: CharSequence) {
-    setText(text)
-    setSelection(text.length)
 }
