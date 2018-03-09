@@ -9,7 +9,7 @@ import java.util.*
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [(AppModule::class), (DataModule::class)])
+@Component(modules = [AppModule::class, DataModule::class])
 interface AppComponent : DataComponent {
 
     fun inject(app: App)

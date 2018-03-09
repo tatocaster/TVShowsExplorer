@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import me.tatocaster.letinterview.App
 import me.tatocaster.letinterview.AppComponent
 import me.tatocaster.letinterview.R
+import me.tatocaster.letinterview.entity.TvShow
 import me.tatocaster.letinterview.utils.showErrorAlert
 import javax.inject.Inject
 
@@ -26,7 +27,8 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
         showErrorAlert(this, "", message)
     }
 
-    override fun dataLoaded() {
+    override fun dataLoaded(shows: ArrayList<TvShow>) {
+
     }
 
     override fun onResume() {
