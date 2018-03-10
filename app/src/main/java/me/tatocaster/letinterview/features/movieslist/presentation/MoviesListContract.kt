@@ -12,6 +12,10 @@ interface MoviesListContract {
     interface Presenter {
         fun attach()
 
+        fun newPageRequested()
+
+        fun refreshData()
+
         fun detach()
     }
 }

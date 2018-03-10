@@ -8,12 +8,12 @@ import me.tatocaster.letinterview.entity.TvShow
 import javax.inject.Inject
 
 interface MoviesListUseCase {
-    fun getFromService(): Single<ArrayList<TvShow>>
+    fun getFromService(page: Int): Single<ArrayList<TvShow>>
 }
 
 class MoviesListUseCaseImpl @Inject constructor(private val apiService: ApiService) : MoviesListUseCase {
-    override fun getFromService(): Single<ArrayList<TvShow>> =
-            apiService.getPopularMovies()
+    override fun getFromService(page: Int): Single<ArrayList<TvShow>> =
+            apiService.getPopularMovies(page)
                     .map { t: MoviesResponse -> t.results }
                     .subscribeOn(Schedulers.io())
 

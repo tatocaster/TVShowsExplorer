@@ -8,20 +8,31 @@ import javax.inject.Inject
 class MoviesListPresenter @Inject constructor(private var view: MoviesListContract.View,
                                               private val useCase: MoviesListUseCase) : MoviesListContract.Presenter {
     private val disposables: CompositeDisposable = CompositeDisposable()
+    private var page = 1
 
     override fun attach() {
+        newPageRequested()
+    }
+
+    override fun newPageRequested() {
         disposables.add(
-                useCase.getFromService()
+                useCase.getFromService(page)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 { data ->
+                                    page += 1
                                     view.dataLoaded(data)
                                 },
-                                { t ->
-                                    view.showError(t?.message.toString())
+                                {
+                                    view.showError("Error Occurred")
                                 }
                         )
         )
+    }
+
+    override fun refreshData() {
+        page = 1
+        newPageRequested()
     }
 
     override fun detach() {

@@ -15,8 +15,18 @@ class MoviesListAdapter(private val context: Context, private val listener: (Int
     private val tvShowsData = arrayListOf<TvShow>()
 
     fun updateData(data: ArrayList<TvShow>) {
-        tvShowsData.addAll(data)
-        notifyDataSetChanged()
+        when {
+            tvShowsData.isNotEmpty() && (tvShowsData[0].name != data[0].name) -> {
+                val tvShowsSize = tvShowsData.size
+                tvShowsData.addAll(data)
+                notifyItemRangeInserted(tvShowsSize, data.size)
+            }
+            else -> { // if refreshed and first items are the same
+                tvShowsData.clear()
+                tvShowsData.addAll(data)
+                notifyDataSetChanged()
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,16 +45,18 @@ class MoviesListAdapter(private val context: Context, private val listener: (Int
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(position: Int, item: TvShow) {
-            itemView.setOnClickListener({ v ->
+            itemView.setOnClickListener({ _ ->
                 listener(position)
             })
 
             itemView.textViewTvShowTitle.text = item.name
             itemView.textViewTvShowDate.text = item.firstAirDate
+            itemView.textViewTvShowVotes.text = item.voteAverage.toString()
 
             GlideApp.with(context)
                     .load("https://image.tmdb.org/t/p/w500/${item.posterPath}")
 //                    .load("https://image.tmdb.org/t/p/w780/${item.backdropPath}")
+                    .optionalFitCenter()
                     .into(itemView.imageViewTvShowPoster)
         }
 
