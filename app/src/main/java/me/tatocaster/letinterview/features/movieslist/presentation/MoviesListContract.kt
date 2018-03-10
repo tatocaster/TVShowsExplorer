@@ -1,4 +1,4 @@
-package me.tatocaster.letinterview.features.movieslist
+package me.tatocaster.letinterview.features.movieslist.presentation
 
 import me.tatocaster.letinterview.entity.TvShow
 

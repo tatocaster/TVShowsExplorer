@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    cardview:cardPreventCornerOverlap="false">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/containerTvShowPoster"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageViewTvShowPoster"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="w,66:100"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="#F50057" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <!-- Force constant item height (set exact lines here) to avoid grid items overlapping. -->
+        <TextView
+            android:id="@+id/textViewTvShowTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/containerTvShowPoster"
+            android:layout_marginLeft="@dimen/inline_padding"
+            android:layout_marginRight="@dimen/inline_padding"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:lines="2"
+            android:textAppearance="@style/TextAppearance.Body.Bold"
+            tools:text="Awesome Movie Title" />
+
+        <TextView
+            android:id="@+id/textViewTvShowDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewTvShowTitle"
+            android:layout_marginEnd="@dimen/larger_padding"
+            android:layout_marginLeft="@dimen/inline_padding"
+            android:layout_marginRight="@dimen/larger_padding"
+            android:layout_marginStart="@dimen/inline_padding"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/colorPrimary"
+            android:paddingBottom="@dimen/default_padding"
+            android:textAppearance="@style/TextAppearance.Caption.Dim"
+            tools:text="13.11.2013" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

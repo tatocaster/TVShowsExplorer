@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="vertical_margin">16dp</dimen>
+
+    <dimen name="inline_padding">4dp</dimen>
+    <dimen name="default_padding">8dp</dimen>
+    <dimen name="large_padding">16dp</dimen>
+    <dimen name="item_padding">2dp</dimen>
+    <dimen name="larger_padding">24dp</dimen>
+
+    <dimen name="text_size_default">14sp</dimen>
+    <dimen name="text_size_caption">12sp</dimen>
 </resources>

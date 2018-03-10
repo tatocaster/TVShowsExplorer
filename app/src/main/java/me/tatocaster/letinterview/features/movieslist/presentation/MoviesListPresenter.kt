@@ -1,4 +1,4 @@
-package me.tatocaster.letinterview.features.movieslist
+package me.tatocaster.letinterview.features.movieslist.presentation
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

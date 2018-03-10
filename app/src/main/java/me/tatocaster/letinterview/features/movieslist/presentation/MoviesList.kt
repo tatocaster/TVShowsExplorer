@@ -1,7 +1,9 @@
-package me.tatocaster.letinterview.features.movieslist
+package me.tatocaster.letinterview.features.movieslist.presentation
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_movies_list.*
 import me.tatocaster.letinterview.App
 import me.tatocaster.letinterview.AppComponent
 import me.tatocaster.letinterview.R
@@ -15,12 +17,26 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
 
     private lateinit var scopeGraph: MoviesListComponent
 
+    private lateinit var adapter: MoviesListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movies_list)
 
         setupScopeGraph(App.getAppContext(this).appComponent)
+        setUpRecyclerView()
+    }
+
+    private fun setUpRecyclerView() {
+        adapter = MoviesListAdapter(this) { position ->
+            println("clicked position $position")
+        }
+        moviesList.adapter = adapter
+        moviesList.layoutManager = LinearLayoutManager(this)
+//        moviesList.setHasFixedSize(true)
+//        val separator = ItemSeparatorDecoration(this, ContextCompat.getColor(this, R.color.item_separator), 1f)
+//        moviesList.addItemDecoration(separator)
+        moviesList.setEmptyView(emptyView)
     }
 
     override fun showError(message: String) {
@@ -28,7 +44,7 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
     }
 
     override fun dataLoaded(shows: ArrayList<TvShow>) {
-
+        adapter.updateData(shows)
     }
 
     override fun onResume() {

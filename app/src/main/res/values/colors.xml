@@ -10,4 +10,7 @@
     <color name="white">#FFF</color>
     <color name="item_separator">#f5f5f6</color>
     <color name="textColor">#767A7D</color>
+
+    <color name="text_secondary_disabled_dark">#66ffffff</color> <!-- 40% white -->
+    <color name="text_secondary_disabled_light">#66000000</color> <!-- 30% black -->
 </resources>
