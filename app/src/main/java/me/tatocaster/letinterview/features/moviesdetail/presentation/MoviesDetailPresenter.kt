@@ -1,28 +1,25 @@
-package me.tatocaster.letinterview.features.movieslist.presentation
+package me.tatocaster.letinterview.features.moviesdetail.presentation
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import me.tatocaster.letinterview.entity.TvShow
-import me.tatocaster.letinterview.features.movieslist.usecase.MoviesListUseCase
+import me.tatocaster.letinterview.features.moviesdetail.usecase.MoviesDetailUseCase
 import javax.inject.Inject
 
-class MoviesListPresenter @Inject constructor(private var view: MoviesListContract.View,
-                                              private val useCase: MoviesListUseCase) : MoviesListContract.Presenter {
+class MoviesDetailPresenter @Inject constructor(private var view: MoviesDetailContract.View,
+                                                private val useCase: MoviesDetailUseCase) : MoviesDetailContract.Presenter {
     private val disposables: CompositeDisposable = CompositeDisposable()
+    private lateinit var currentTvShow: TvShow
     private var page = 1
 
-    override fun attach() {
-        newPageRequested()
-    }
-
-    override fun newPageRequested() {
+    override fun loadSimilarShows() {
         disposables.add(
-                useCase.getFromService(page)
+                useCase.getSimilarShows(currentTvShow.id, page)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 { data ->
                                     page += 1
-                                    view.dataLoaded(data)
+                                    view.similarShowsLoaded(data)
                                 },
                                 {
                                     view.showError("Error Occurred")
@@ -31,14 +28,12 @@ class MoviesListPresenter @Inject constructor(private var view: MoviesListContra
         )
     }
 
-    override fun refreshData() {
-        page = 1
-        newPageRequested()
+
+    override fun setCurrentTvShow(item: TvShow) {
+        currentTvShow = item
+        view.setUpDetailedView(item)
     }
 
-    override fun tvShowSelected(item: TvShow) {
-        view.navigateToDetailsScreen(item)
-    }
 
     override fun detach() {
         disposables.clear()

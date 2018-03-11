@@ -9,9 +9,9 @@
     <color name="successBackground">#689F38</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
-    <color name="item_separator">#f5f5f6</color>
     <color name="textColor">#d4d4d6</color>
-
-    <color name="text_secondary_disabled_light">#66ffffff</color> <!-- 40% white -->
-    <color name="text_secondary_disabled_dark">#66000000</color> <!-- 30% black -->
+    <color name="backgroundTintDark">#CC000000</color> <!-- 80% black -->
+    <color name="backgroundTint">#4D000000</color> <!-- 30% black -->
+    <color name="backgroundTintLighter">#26000000</color> <!-- 15% black -->
+    <color name="textSecondaryDisabledLight">#66ffffff</color> <!-- 40% white -->
 </resources>

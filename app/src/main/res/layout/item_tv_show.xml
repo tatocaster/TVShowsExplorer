@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/tv_show_title_padding"
                     android:paddingStart="@dimen/tv_show_title_padding"
-                    android:textColor="@color/text_secondary_disabled_light"
+                    android:textColor="@color/textSecondaryDisabledLight"
                     android:textSize="@dimen/text_size_secondary" />
             </LinearLayout>
 
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/tv_show_title_padding"
                     android:paddingStart="@dimen/tv_show_title_padding"
-                    android:textColor="@color/text_secondary_disabled_light"
+                    android:textColor="@color/textSecondaryDisabledLight"
                     android:textSize="@dimen/text_size_secondary"
                     android:textStyle="bold" />
             </LinearLayout>

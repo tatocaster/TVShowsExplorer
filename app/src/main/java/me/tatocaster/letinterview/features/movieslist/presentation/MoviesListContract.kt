@@ -7,6 +7,8 @@ interface MoviesListContract {
         fun showError(message: String)
 
         fun dataLoaded(shows: ArrayList<TvShow>)
+
+        fun navigateToDetailsScreen(item : TvShow)
     }
 
     interface Presenter {
@@ -17,5 +19,7 @@ interface MoviesListContract {
         fun refreshData()
 
         fun detach()
+
+        fun tvShowSelected(item : TvShow)
     }
 }

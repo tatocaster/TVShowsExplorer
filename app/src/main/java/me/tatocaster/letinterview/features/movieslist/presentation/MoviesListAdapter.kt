@@ -11,7 +11,7 @@ import me.tatocaster.letinterview.entity.TvShow
 import me.tatocaster.letinterview.utils.GlideApp
 import java.util.*
 
-class MoviesListAdapter(private val context: Context, private val listener: (Int) -> Unit) : RecyclerView.Adapter<MoviesListAdapter.ViewHolder>() {
+class MoviesListAdapter(private val context: Context, private val listener: (Int, TvShow) -> Unit) : RecyclerView.Adapter<MoviesListAdapter.ViewHolder>() {
     private val tvShowsData = arrayListOf<TvShow>()
 
     fun updateData(data: ArrayList<TvShow>) {
@@ -46,7 +46,7 @@ class MoviesListAdapter(private val context: Context, private val listener: (Int
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(position: Int, item: TvShow) {
             itemView.setOnClickListener({ _ ->
-                listener(position)
+                listener(position, item)
             })
 
             itemView.textViewTvShowTitle.text = item.name

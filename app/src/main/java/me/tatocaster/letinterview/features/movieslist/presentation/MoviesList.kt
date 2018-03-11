@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_movies_list.*
 import kotlinx.android.synthetic.main.content_movies_list.*
 import me.tatocaster.letinterview.App
 import me.tatocaster.letinterview.AppComponent
 import me.tatocaster.letinterview.R
 import me.tatocaster.letinterview.entity.TvShow
+import me.tatocaster.letinterview.features.moviesdetail.presentation.MoviesDetail
 import me.tatocaster.letinterview.utils.GridSpacingItemDecoration
 import me.tatocaster.letinterview.utils.dpToPx
 import me.tatocaster.letinterview.utils.showErrorAlert
@@ -49,15 +49,13 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movies_list)
 
-        setSupportActionBar(toolBar)
-        appBar.setExpanded(true)
         setupScopeGraph(App.getAppContext(this).appComponent)
         setUpRecyclerView()
     }
 
     private fun setUpRecyclerView() {
-        adapter = MoviesListAdapter(this) { position ->
-            println("clicked position $position")
+        adapter = MoviesListAdapter(this) { _, item ->
+            navigateToDetailsScreen(item)
         }
         moviesList.adapter = adapter
         val layoutManager = GridLayoutManager(this, 2)
@@ -84,6 +82,10 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
         swipeRefreshLayout.isRefreshing = false
         newPageRequestAvailable = true
         adapter.updateData(shows)
+    }
+
+    override fun navigateToDetailsScreen(item: TvShow) {
+        MoviesDetail.startActivity(this, item)
     }
 
     override fun onResume() {
