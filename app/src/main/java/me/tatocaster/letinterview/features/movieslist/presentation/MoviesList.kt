@@ -1,7 +1,6 @@
 package me.tatocaster.letinterview.features.movieslist.presentation
 
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
@@ -51,33 +50,9 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
         setContentView(R.layout.activity_movies_list)
 
         setSupportActionBar(toolBar)
-        initCollapsingToolbar()
+        appBar.setExpanded(true)
         setupScopeGraph(App.getAppContext(this).appComponent)
         setUpRecyclerView()
-    }
-
-    private fun initCollapsingToolbar() {
-        collapsingToolbar.title = " "
-        appBar.setExpanded(true)
-
-        // hiding & showing the title when toolbar expanded & collapsed
-        appBar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
-            internal var isShow = false
-            internal var scrollRange = -1
-
-            override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout.totalScrollRange
-                }
-                if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbar.title = getString(R.string.app_name)
-                    isShow = true
-                } else if (isShow) {
-                    collapsingToolbar.title = " "
-                    isShow = false
-                }
-            }
-        })
     }
 
     private fun setUpRecyclerView() {
