@@ -62,7 +62,7 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
         moviesList.adapter = adapter
         val layoutManager = GridLayoutManager(this, 2)
         moviesList.layoutManager = layoutManager
-        moviesList.addItemDecoration(GridSpacingItemDecoration(2, dpToPx(10), true))
+        moviesList.addItemDecoration(GridSpacingItemDecoration(2, dpToPx(4), false))
         moviesList.itemAnimator = DefaultItemAnimator()
         moviesList.addOnScrollListener(listOnScrollListener)
 

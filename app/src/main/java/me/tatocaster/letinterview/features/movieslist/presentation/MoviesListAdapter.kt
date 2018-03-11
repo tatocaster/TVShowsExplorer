@@ -56,7 +56,6 @@ class MoviesListAdapter(private val context: Context, private val listener: (Int
             GlideApp.with(context)
                     .load("https://image.tmdb.org/t/p/w500/${item.posterPath}")
 //                    .load("https://image.tmdb.org/t/p/w780/${item.backdropPath}")
-                    .optionalFitCenter()
                     .into(itemView.imageViewTvShowPoster)
         }
 
