@@ -8,7 +8,7 @@ interface MoviesListContract {
 
         fun dataLoaded(shows: ArrayList<TvShow>)
 
-        fun navigateToDetailsScreen(item : TvShow)
+        fun navigateToDetailsScreen(id : Int)
     }
 
     interface Presenter {
@@ -20,6 +20,6 @@ interface MoviesListContract {
 
         fun detach()
 
-        fun tvShowSelected(item : TvShow)
+        fun tvShowSelected(id : Int)
     }
 }

@@ -12,7 +12,7 @@ interface MoviesDetailContract {
     }
 
     interface Presenter {
-        fun setCurrentTvShow(item: TvShow)
+        fun setCurrentTvShowId(id: Int)
 
         fun detach()
 

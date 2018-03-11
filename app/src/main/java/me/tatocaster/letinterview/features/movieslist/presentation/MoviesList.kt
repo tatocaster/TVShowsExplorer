@@ -2,9 +2,10 @@ package me.tatocaster.letinterview.features.movieslist.presentation
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.animation.OvershootInterpolator
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import kotlinx.android.synthetic.main.content_movies_list.*
 import me.tatocaster.letinterview.App
 import me.tatocaster.letinterview.AppComponent
@@ -55,14 +56,16 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
 
     private fun setUpRecyclerView() {
         adapter = MoviesListAdapter(this) { _, item ->
-            navigateToDetailsScreen(item)
+            navigateToDetailsScreen(item.id)
         }
         moviesList.adapter = adapter
         val layoutManager = GridLayoutManager(this, 2)
         moviesList.layoutManager = layoutManager
         moviesList.addItemDecoration(GridSpacingItemDecoration(2, dpToPx(4), false))
-        moviesList.itemAnimator = DefaultItemAnimator()
         moviesList.addOnScrollListener(listOnScrollListener)
+
+        val animator = SlideInUpAnimator(OvershootInterpolator(1f))
+        moviesList.itemAnimator = animator
 
         swipeRefreshLayout.setOnRefreshListener({
             swipeRefreshLayout.isRefreshing = true
@@ -84,8 +87,8 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
         adapter.updateData(shows)
     }
 
-    override fun navigateToDetailsScreen(item: TvShow) {
-        MoviesDetail.startActivity(this, item)
+    override fun navigateToDetailsScreen(id: Int) {
+        MoviesDetail.startActivity(this, id)
     }
 
     override fun onResume() {

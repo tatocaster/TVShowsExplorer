@@ -1,7 +1,10 @@
 package me.tatocaster.letinterview.features.moviesdetail.presentation
 
+import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -28,13 +31,14 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
         appBar.setExpanded(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        collapsingToolbar.title = ""
 
         setupScopeGraph(App.getAppContext(this).appComponent)
 
         val intent = this.intent
         val bundle = intent.extras
-        val tvShow = bundle?.getSerializable(SERIALIZABLE_TV_OBJECT) as TvShow
-        presenter.setCurrentTvShow(tvShow)
+        val tvShowId = bundle.getInt(TV_ID)
+        presenter.setCurrentTvShowId(tvShowId)
     }
 
 
@@ -79,14 +83,19 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
 
     companion object {
         val TAG = "MoviesDetail"
-        private const val SERIALIZABLE_TV_OBJECT = "SERIALIZABLE_TV_OBJECT"
+        private const val TV_ID = "TV_ID"
 
-        fun startActivity(context: Context, item: TvShow) {
+        fun startActivity(context: Context, item: Int) {
             val detailActivityIntent = Intent(context, MoviesDetail::class.java)
             val bundle = Bundle()
-            bundle.putSerializable(SERIALIZABLE_TV_OBJECT, item)
+            bundle.putInt(TV_ID, item)
             detailActivityIntent.putExtras(bundle)
-            context.startActivity(detailActivityIntent)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                context.startActivity(detailActivityIntent, ActivityOptions.makeSceneTransitionAnimation(context as Activity).toBundle())
+            } else {
+                context.startActivity(detailActivityIntent)
+            }
+
         }
     }
 }

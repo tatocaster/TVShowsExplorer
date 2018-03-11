@@ -9,12 +9,18 @@ import javax.inject.Inject
 
 interface MoviesDetailUseCase {
     fun getSimilarShows(showId: Int, page: Int): Single<ArrayList<TvShow>>
+    fun getTvData(showId: Int): Single<TvShow>
 }
 
 class MoviesDetailUseCaseImpl @Inject constructor(private val apiService: ApiService) : MoviesDetailUseCase {
     override fun getSimilarShows(showId: Int, page: Int): Single<ArrayList<TvShow>> =
             apiService.getSimilarMovies(showId, page)
                     .map { t: MoviesResponse -> t.results }
+                    .subscribeOn(Schedulers.io())
+
+
+    override fun getTvData(showId: Int): Single<TvShow> =
+            apiService.getTvData(showId)
                     .subscribeOn(Schedulers.io())
 
 }
