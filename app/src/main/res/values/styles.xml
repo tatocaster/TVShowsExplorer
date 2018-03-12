@@ -14,4 +14,15 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="standardText" parent="ExpandedAppBar">
+        <item name="android:textSize">@dimen/text_size_default</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="secondaryText" parent="ExpandedAppBar">
+        <item name="android:textSize">@dimen/text_size_secondary</item>
+        <item name="android:textColor">@color/textSecondaryDisabledLight</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 </resources>

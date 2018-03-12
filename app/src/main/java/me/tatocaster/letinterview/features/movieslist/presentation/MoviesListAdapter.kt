@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.item_tv_show.view.*
 import me.tatocaster.letinterview.R
 import me.tatocaster.letinterview.entity.TvShow
 import me.tatocaster.letinterview.utils.GlideApp
+import org.joda.time.format.DateTimeFormat
 import java.util.*
 
 class MoviesListAdapter(private val context: Context, private val listener: (Int, TvShow) -> Unit) : RecyclerView.Adapter<MoviesListAdapter.ViewHolder>() {
@@ -49,13 +50,15 @@ class MoviesListAdapter(private val context: Context, private val listener: (Int
                 listener(position, item)
             })
 
+            val formatter = DateTimeFormat.forPattern("yyyy-MM-dd")
+            val firstAirDate = formatter.parseLocalDate(item.firstAirDate)
+
             itemView.textViewTvShowTitle.text = item.name
-            itemView.textViewTvShowDate.text = item.firstAirDate
+            itemView.textViewTvShowDate.text = firstAirDate.year.toString()
             itemView.textViewTvShowVotes.text = item.voteAverage.toString()
 
             GlideApp.with(context)
                     .load("https://image.tmdb.org/t/p/w500/${item.posterPath}")
-//                    .load("https://image.tmdb.org/t/p/w780/${item.backdropPath}")
                     .into(itemView.imageViewTvShowPoster)
         }
 

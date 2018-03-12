@@ -1,10 +1,11 @@
 package me.tatocaster.letinterview.features.moviesdetail.presentation
 
 import me.tatocaster.letinterview.entity.TvShow
+import me.tatocaster.letinterview.entity.TvShowDetail
 
 interface MoviesDetailContract {
     interface View {
-        fun setUpDetailedView(item: TvShow)
+        fun setUpDetailedView(item: TvShowDetail)
 
         fun showError(message: String)
 

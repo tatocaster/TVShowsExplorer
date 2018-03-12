@@ -5,11 +5,12 @@ import io.reactivex.schedulers.Schedulers
 import me.tatocaster.letinterview.data.api.ApiService
 import me.tatocaster.letinterview.data.api.response.MoviesResponse
 import me.tatocaster.letinterview.entity.TvShow
+import me.tatocaster.letinterview.entity.TvShowDetail
 import javax.inject.Inject
 
 interface MoviesDetailUseCase {
     fun getSimilarShows(showId: Int, page: Int): Single<ArrayList<TvShow>>
-    fun getTvData(showId: Int): Single<TvShow>
+    fun getTvData(showId: Int): Single<TvShowDetail>
 }
 
 class MoviesDetailUseCaseImpl @Inject constructor(private val apiService: ApiService) : MoviesDetailUseCase {
@@ -19,7 +20,7 @@ class MoviesDetailUseCaseImpl @Inject constructor(private val apiService: ApiSer
                     .subscribeOn(Schedulers.io())
 
 
-    override fun getTvData(showId: Int): Single<TvShow> =
+    override fun getTvData(showId: Int): Single<TvShowDetail> =
             apiService.getTvData(showId)
                     .subscribeOn(Schedulers.io())
 

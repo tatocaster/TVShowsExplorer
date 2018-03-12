@@ -45,3 +45,9 @@
 -keepattributes Signature
 # Retain declared checked exceptions for use by a Proxy instance.
 -keepattributes Exceptions
+
+#JodaTime
+#-dontwarn org.joda.convert.**
+#-dontwarn org.joda.time.**
+#-keep class org.joda.time.** { *; }
+#-keep interface org.joda.time.** { *; }
