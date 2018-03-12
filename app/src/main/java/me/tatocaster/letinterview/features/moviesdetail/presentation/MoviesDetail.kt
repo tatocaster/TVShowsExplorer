@@ -69,14 +69,19 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
 
         val toolbarText = "${firstAirDate.year} (${item.status})"
         val ss1 = SpannableString(toolbarText)
-        ss1.setSpan(RelativeSizeSpan(0.8f), 5, toolbarText.length, 0)  // set size
+        ss1.setSpan(RelativeSizeSpan(0.7f), 5, toolbarText.length, 0)  // set size
         firstAiredDate.text = ss1
 
         runTime.text = String.format(getString(R.string.minute_with_placeholder), item.episodeRunTime[0])
         votes.text = item.voteAverage.toString()
         showLanguage.text = item.originalLanguage
         overview.text = item.overview
-        textViewShowGenres.text = item.genres[0].name
+
+        var genres = ""
+        item.genres.forEach {
+            genres += "${it.name}, "
+        }
+        textViewShowGenres.text = genres
         textViewShowReleaseCountry.text = item.originCountry[0]
     }
 
