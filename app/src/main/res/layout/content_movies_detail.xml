@@ -140,7 +140,6 @@
             android:textIsSelectable="true"
             tools:text="Comedy, Romance" />
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -161,11 +160,23 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/white" />
+
+
+        <!-- Seasons -->
+
+        <!-- Similar Shows -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/similar_shows"
+            tools:text="@string/similar_shows"
+            android:textAppearance="@style/standardText" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/similarShowsList"
+            android:layout_width="match_parent"
+            android:layout_height="220dp" />
     </LinearLayout>
 
-
-    <!-- Seasons -->
-
-
-    <!-- Similar Shows -->
 </android.support.v4.widget.NestedScrollView>

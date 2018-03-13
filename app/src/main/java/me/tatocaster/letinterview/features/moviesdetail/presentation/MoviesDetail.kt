@@ -7,9 +7,12 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
+import android.view.animation.OvershootInterpolator
 import com.bumptech.glide.Glide
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import kotlinx.android.synthetic.main.activity_movies_detail.*
 import kotlinx.android.synthetic.main.content_movies_detail.*
 import me.tatocaster.letinterview.App
@@ -18,6 +21,7 @@ import me.tatocaster.letinterview.R
 import me.tatocaster.letinterview.entity.Pallete
 import me.tatocaster.letinterview.entity.TvShow
 import me.tatocaster.letinterview.entity.TvShowDetail
+import me.tatocaster.letinterview.features.movieslist.presentation.MoviesListAdapter
 import me.tatocaster.letinterview.utils.showErrorAlert
 import org.joda.time.format.DateTimeFormat
 import java.util.*
@@ -29,6 +33,9 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
 
     @Inject
     lateinit var presenter: MoviesDetailContract.Presenter
+
+    private var adapter: MoviesListAdapter = MoviesListAdapter(this, { _, item, backdropColor ->
+    }, true)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +72,13 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
     }
 
     override fun similarShowsLoaded(shows: ArrayList<TvShow>) {
+        similarShowsList.adapter = adapter
+        adapter.updateData(shows)
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        similarShowsList.layoutManager = layoutManager
 
+        val animator = SlideInUpAnimator(OvershootInterpolator(1f))
+        similarShowsList.itemAnimator = animator
     }
 
     override fun setUpDetailedView(item: TvShowDetail) {

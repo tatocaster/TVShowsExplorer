@@ -3,4 +3,5 @@
     <string name="minute_with_placeholder">%1$s min</string>
     <string name="country">Country</string>
     <string name="genres">Genres</string>
+    <string name="similar_shows">Similar Shows</string>
 </resources>

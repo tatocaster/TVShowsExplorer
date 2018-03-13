@@ -15,8 +15,12 @@ import me.tatocaster.letinterview.utils.GlideApp
 import org.joda.time.format.DateTimeFormat
 import java.util.*
 
-class MoviesListAdapter(private val context: Context, private val listener: (Int, TvShow, Pallete) -> Unit) : RecyclerView.Adapter<MoviesListAdapter.ViewHolder>() {
+class MoviesListAdapter(private val context: Context,
+                        private val listener: (Int, TvShow, Pallete) -> Unit,
+                        private val similarShows: Boolean = false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val tvShowsData = arrayListOf<TvShow>()
+    private val TYPE_SIMILAR_SHOW = 1
+    private val TYPE_SHOW = 2
 
     fun updateData(data: ArrayList<TvShow>) {
         when {
@@ -33,14 +37,24 @@ class MoviesListAdapter(private val context: Context, private val listener: (Int
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_tv_show, parent, false)
-        return ViewHolder(view)
+    override fun getItemViewType(position: Int): Int {
+        return if (similarShows) TYPE_SIMILAR_SHOW else TYPE_SHOW
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == TYPE_SIMILAR_SHOW)
+            SimilarShowsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_similar_tv_show, parent, false))
+        else
+            ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_tv_show, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = tvShowsData[position]
-        holder.bindView(position, item)
+        if (holder.itemViewType == TYPE_SIMILAR_SHOW)
+            (holder as SimilarShowsViewHolder).bindView(item)
+        else
+            (holder as ViewHolder).bindView(position, item)
     }
 
     override fun getItemCount(): Int {
@@ -73,6 +87,17 @@ class MoviesListAdapter(private val context: Context, private val listener: (Int
                                 palleteColor.textColor = swatch?.titleTextColor ?: ContextCompat.getColor(context, R.color.textColor)
                             })
                     )
+                    .into(itemView.imageViewTvShowPoster)
+        }
+
+    }
+
+    inner class SimilarShowsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bindView(item: TvShow) {
+            itemView.textViewTvShowTitle.text = item.name
+            val url = "https://image.tmdb.org/t/p/w300/${item.posterPath}"
+            GlideApp.with(context)
+                    .load(url)
                     .into(itemView.imageViewTvShowPoster)
         }
 

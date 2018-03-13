@@ -56,9 +56,9 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
     }
 
     private fun setUpRecyclerView() {
-        adapter = MoviesListAdapter(this) { _, item, backdropColor ->
+        adapter = MoviesListAdapter(this, { _, item, backdropColor ->
             navigateToDetailsScreen(item.id, backdropColor)
-        }
+        }, false)
         moviesList.adapter = adapter
         val layoutManager = GridLayoutManager(this, 2)
         moviesList.layoutManager = layoutManager
