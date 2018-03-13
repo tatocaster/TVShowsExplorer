@@ -52,7 +52,7 @@ class MoviesListAdapter(private val context: Context,
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = tvShowsData[position]
         if (holder.itemViewType == TYPE_SIMILAR_SHOW)
-            (holder as SimilarShowsViewHolder).bindView(item)
+            (holder as SimilarShowsViewHolder).bindView(position, item)
         else
             (holder as ViewHolder).bindView(position, item)
     }
@@ -93,11 +93,24 @@ class MoviesListAdapter(private val context: Context,
     }
 
     inner class SimilarShowsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindView(item: TvShow) {
+        private var palleteColor: Pallete = Pallete()
+        fun bindView(position: Int, item: TvShow) {
+            itemView.setOnClickListener({ _ ->
+                listener(position, item, palleteColor)
+            })
+
             itemView.textViewTvShowTitle.text = item.name
             val url = "https://image.tmdb.org/t/p/w300/${item.posterPath}"
             GlideApp.with(context)
                     .load(url)
+                    // prepare pallete before the details view will load
+                    .listener(GlidePalette.with(url)
+                            .intoCallBack({ pallete ->
+                                val swatch = pallete?.darkMutedSwatch
+                                palleteColor.bodyColor = swatch?.rgb ?: ContextCompat.getColor(context, R.color.colorPrimary)
+                                palleteColor.textColor = swatch?.titleTextColor ?: ContextCompat.getColor(context, R.color.textColor)
+                            })
+                    )
                     .into(itemView.imageViewTvShowPoster)
         }
 

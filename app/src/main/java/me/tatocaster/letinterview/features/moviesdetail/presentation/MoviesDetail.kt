@@ -35,6 +35,8 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
     lateinit var presenter: MoviesDetailContract.Presenter
 
     private var adapter: MoviesListAdapter = MoviesListAdapter(this, { _, item, backdropColor ->
+        MoviesDetail.startActivity(this, item.id, backdropColor)
+        finish()
     }, true)
 
     override fun onCreate(savedInstanceState: Bundle?) {
