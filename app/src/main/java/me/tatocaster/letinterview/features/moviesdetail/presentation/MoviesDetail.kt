@@ -19,6 +19,7 @@ import me.tatocaster.letinterview.App
 import me.tatocaster.letinterview.AppComponent
 import me.tatocaster.letinterview.R
 import me.tatocaster.letinterview.entity.Pallete
+import me.tatocaster.letinterview.entity.Season
 import me.tatocaster.letinterview.entity.TvShow
 import me.tatocaster.letinterview.entity.TvShowDetail
 import me.tatocaster.letinterview.features.movieslist.presentation.MoviesListAdapter
@@ -47,6 +48,7 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
         appBar.setExpanded(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.title = null
         collapsingToolbar.title = ""
 
         setupScopeGraph(App.getAppContext(this).appComponent)
@@ -66,6 +68,12 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
         }
 
         presenter.setCurrentTvShowId(tvShowId)
+    }
+
+    private fun setUpSeasonsRecyclerView(seasons: List<Season>) {
+        seasonsList.adapter = SeasonsListAdapter(this, seasons)
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        seasonsList.layoutManager = layoutManager
     }
 
 
@@ -110,6 +118,8 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
         }
         textViewShowGenres.text = genres
         textViewShowReleaseCountry.text = item.originCountry[0]
+
+        setUpSeasonsRecyclerView(item.seasons)
     }
 
     override fun onResume() {

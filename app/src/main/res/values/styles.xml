@@ -25,4 +25,9 @@
         <item name="android:textColor">@color/textSecondaryDisabledLight</item>
         <item name="android:textStyle">normal</item>
     </style>
+
+    <style name="divider">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
 </resources>

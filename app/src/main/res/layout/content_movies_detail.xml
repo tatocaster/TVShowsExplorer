@@ -5,7 +5,7 @@
     android:id="@+id/scrollViewShow"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
+    android:padding="@dimen/average_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
@@ -20,8 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp">
+            android:paddingBottom="@dimen/padding_4"
+            android:paddingTop="@dimen/padding_4">
 
             <TextView
                 android:id="@+id/firstAiredDate"
@@ -63,8 +63,8 @@
                     style="@style/standardText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="@dimen/average_margin"
+                    android:layout_marginStart="@dimen/average_margin"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     tools:text="6.8" />
@@ -73,17 +73,16 @@
         </LinearLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/white" />
+            style="@style/divider"
+            android:layout_width="match_parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="left|start"
             android:orientation="horizontal"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp">
+            android:paddingBottom="@dimen/padding_4"
+            android:paddingTop="@dimen/padding_4">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -96,40 +95,38 @@
                 style="@style/standardText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"
+                android:layout_marginLeft="@dimen/padding_4"
+                android:layout_marginStart="@dimen/padding_4"
                 android:gravity="center_vertical"
                 android:textAllCaps="true"
                 tools:text="EN" />
         </LinearLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/white" />
+            style="@style/divider"
+            android:layout_width="match_parent" />
 
         <TextView
             android:id="@+id/overview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp"
+            android:layout_marginBottom="@dimen/padding_4"
+            android:paddingBottom="@dimen/padding_4"
+            android:paddingTop="@dimen/padding_4"
             android:textAppearance="@style/secondaryText"
             android:textSize="13sp"
             tools:text="A multi-line description of this show. Which is rather lenghty." />
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/white" />
+            style="@style/divider"
+            android:layout_width="match_parent" />
 
 
         <TextView
             style="@style/standardText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="4dp"
+            android:paddingTop="@dimen/padding_4"
             android:text="@string/genres" />
 
         <TextView
@@ -143,7 +140,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/average_margin"
             android:text="@string/country"
             android:textAppearance="@style/standardText" />
 
@@ -151,27 +148,38 @@
             android:id="@+id/textViewShowReleaseCountry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="4dp"
+            android:paddingBottom="@dimen/padding_4"
             android:textAppearance="@style/secondaryText"
             android:textIsSelectable="true"
             tools:text="USA" />
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/white" />
+            style="@style/divider"
+            android:layout_width="match_parent" />
 
 
         <!-- Seasons -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/average_margin"
+            android:text="@string/seasons"
+            android:textAppearance="@style/standardText"
+            tools:text="@string/seasons" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/seasonsList"
+            android:layout_width="match_parent"
+            android:layout_height="220dp" />
 
         <!-- Similar Shows -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/average_margin"
             android:text="@string/similar_shows"
-            tools:text="@string/similar_shows"
-            android:textAppearance="@style/standardText" />
+            android:textAppearance="@style/standardText"
+            tools:text="@string/similar_shows" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/similarShowsList"
