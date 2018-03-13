@@ -1,18 +1,21 @@
 package me.tatocaster.letinterview.features.movieslist.presentation
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.florent37.glidepalette.GlidePalette
 import kotlinx.android.synthetic.main.item_tv_show.view.*
 import me.tatocaster.letinterview.R
+import me.tatocaster.letinterview.entity.Pallete
 import me.tatocaster.letinterview.entity.TvShow
 import me.tatocaster.letinterview.utils.GlideApp
 import org.joda.time.format.DateTimeFormat
 import java.util.*
 
-class MoviesListAdapter(private val context: Context, private val listener: (Int, TvShow) -> Unit) : RecyclerView.Adapter<MoviesListAdapter.ViewHolder>() {
+class MoviesListAdapter(private val context: Context, private val listener: (Int, TvShow, Pallete) -> Unit) : RecyclerView.Adapter<MoviesListAdapter.ViewHolder>() {
     private val tvShowsData = arrayListOf<TvShow>()
 
     fun updateData(data: ArrayList<TvShow>) {
@@ -45,9 +48,11 @@ class MoviesListAdapter(private val context: Context, private val listener: (Int
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private var palleteColor: Pallete = Pallete()
+
         fun bindView(position: Int, item: TvShow) {
             itemView.setOnClickListener({ _ ->
-                listener(position, item)
+                listener(position, item, palleteColor)
             })
 
             val formatter = DateTimeFormat.forPattern("yyyy-MM-dd")
@@ -57,8 +62,17 @@ class MoviesListAdapter(private val context: Context, private val listener: (Int
             itemView.textViewTvShowDate.text = firstAirDate.year.toString()
             itemView.textViewTvShowVotes.text = item.voteAverage.toString()
 
+            val url = "https://image.tmdb.org/t/p/w500/${item.posterPath}"
             GlideApp.with(context)
-                    .load("https://image.tmdb.org/t/p/w500/${item.posterPath}")
+                    .load(url)
+                    // prepare pallete before the details view will load
+                    .listener(GlidePalette.with(url)
+                            .intoCallBack({ pallete ->
+                                val swatch = pallete?.darkMutedSwatch
+                                palleteColor.bodyColor = swatch?.rgb ?: ContextCompat.getColor(context, R.color.colorPrimary)
+                                palleteColor.textColor = swatch?.titleTextColor ?: ContextCompat.getColor(context, R.color.textColor)
+                            })
+                    )
                     .into(itemView.imageViewTvShowPoster)
         }
 

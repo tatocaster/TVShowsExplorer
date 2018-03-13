@@ -161,6 +161,11 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/white" />
-
     </LinearLayout>
+
+
+    <!-- Seasons -->
+
+
+    <!-- Similar Shows -->
 </android.support.v4.widget.NestedScrollView>

@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.content_movies_list.*
 import me.tatocaster.letinterview.App
 import me.tatocaster.letinterview.AppComponent
 import me.tatocaster.letinterview.R
+import me.tatocaster.letinterview.entity.Pallete
 import me.tatocaster.letinterview.entity.TvShow
 import me.tatocaster.letinterview.features.moviesdetail.presentation.MoviesDetail
 import me.tatocaster.letinterview.utils.GridSpacingItemDecoration
@@ -55,8 +56,8 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
     }
 
     private fun setUpRecyclerView() {
-        adapter = MoviesListAdapter(this) { _, item ->
-            navigateToDetailsScreen(item.id)
+        adapter = MoviesListAdapter(this) { _, item, backdropColor ->
+            navigateToDetailsScreen(item.id, backdropColor)
         }
         moviesList.adapter = adapter
         val layoutManager = GridLayoutManager(this, 2)
@@ -87,8 +88,8 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
         adapter.updateData(shows)
     }
 
-    override fun navigateToDetailsScreen(id: Int) {
-        MoviesDetail.startActivity(this, id)
+    override fun navigateToDetailsScreen(id: Int, backDropColor: Pallete) {
+        MoviesDetail.startActivity(this, id, backDropColor)
     }
 
     override fun onResume() {

@@ -2,6 +2,7 @@ package me.tatocaster.letinterview.features.movieslist.presentation
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import me.tatocaster.letinterview.entity.Pallete
 import me.tatocaster.letinterview.entity.TvShow
 import me.tatocaster.letinterview.features.movieslist.usecase.MoviesListUseCase
 import javax.inject.Inject
@@ -41,8 +42,8 @@ class MoviesListPresenter @Inject constructor(private var view: MoviesListContra
         newPageRequested()
     }
 
-    override fun tvShowSelected(id: Int) {
-        view.navigateToDetailsScreen(id)
+    override fun tvShowSelected(id: Int, backDropColor: Pallete) {
+        view.navigateToDetailsScreen(id, backDropColor)
     }
 
     override fun detach() {

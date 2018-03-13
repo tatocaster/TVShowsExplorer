@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.content_movies_detail.*
 import me.tatocaster.letinterview.App
 import me.tatocaster.letinterview.AppComponent
 import me.tatocaster.letinterview.R
+import me.tatocaster.letinterview.entity.Pallete
 import me.tatocaster.letinterview.entity.TvShow
 import me.tatocaster.letinterview.entity.TvShowDetail
 import me.tatocaster.letinterview.utils.showErrorAlert
@@ -44,6 +45,17 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
         val intent = this.intent
         val bundle = intent.extras
         val tvShowId = bundle.getInt(TV_ID)
+        val backDropColor = bundle.getSerializable(BACKDROP_COLOR) as Pallete
+
+        scrollViewShow.setBackgroundColor(backDropColor.bodyColor)
+        collapsingToolbar.setBackgroundColor(backDropColor.bodyColor)
+        collapsingToolbar.setStatusBarScrimColor(backDropColor.bodyColor)
+        collapsingToolbar.setContentScrimColor(backDropColor.bodyColor)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = backDropColor.bodyColor
+            window.navigationBarColor = backDropColor.bodyColor
+        }
+
         presenter.setCurrentTvShowId(tvShowId)
     }
 
@@ -111,11 +123,13 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
     companion object {
         val TAG = "MoviesDetail"
         private const val TV_ID = "TV_ID"
+        private const val BACKDROP_COLOR = "BACKDROP_COLOR"
 
-        fun startActivity(context: Context, item: Int) {
+        fun startActivity(context: Context, itemId: Int, backdropColor: Pallete) {
             val detailActivityIntent = Intent(context, MoviesDetail::class.java)
             val bundle = Bundle()
-            bundle.putInt(TV_ID, item)
+            bundle.putInt(TV_ID, itemId)
+            bundle.putSerializable(BACKDROP_COLOR, backdropColor)
             detailActivityIntent.putExtras(bundle)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 context.startActivity(detailActivityIntent, ActivityOptions.makeSceneTransitionAnimation(context as Activity).toBundle())
