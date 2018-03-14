@@ -35,7 +35,7 @@ data class TvShowDetail(
 )
 
 data class Season(
-        @SerializedName("air_date") val airDate: String = "",
+        @SerializedName("air_date") val airDate: String? = "",
         @SerializedName("episode_count") val episodeCount: Int = 0,
         @SerializedName("id") val id: Int = 0,
         @SerializedName("poster_path") val posterPath: String = "",

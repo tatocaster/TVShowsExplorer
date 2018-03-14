@@ -31,9 +31,11 @@ class SeasonsListAdapter(private val context: Context, private val seasonsData: 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(item: Season) {
             val formatter = DateTimeFormat.forPattern("yyyy-MM-dd")
-            val firstAirDate = formatter.parseLocalDate(item.airDate)
 
-            itemView.seasonAired.text = firstAirDate.year.toString()
+            if (item.airDate != null) {
+                val firstAirDate = formatter.parseLocalDate(item.airDate)
+                itemView.seasonAired.text = firstAirDate.year.toString()
+            }
             itemView.seasonNumber.text = "# ${item.seasonNumber}"
             itemView.episodesCount.text = "Episodes ${item.episodeCount}"
 

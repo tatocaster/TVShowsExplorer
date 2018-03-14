@@ -41,6 +41,7 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
 
                 if (currentTotalCount <= lastItem + visibleThreshold && newPageRequestAvailable) {
                     newPageRequestAvailable = false
+                    swipeRefreshLayout.isRefreshing = true
                     mainPresenter.newPageRequested()
                 }
             }
