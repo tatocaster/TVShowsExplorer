@@ -44,6 +44,8 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movies_detail)
 
+        shimmerLayout.startShimmerAnimation()
+
         setSupportActionBar(toolBar)
         appBar.setExpanded(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -120,6 +122,7 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
         textViewShowReleaseCountry.text = item.originCountry[0]
 
         setUpSeasonsRecyclerView(item.seasons)
+        shimmerLayout.stopShimmerAnimation()
     }
 
     override fun onResume() {

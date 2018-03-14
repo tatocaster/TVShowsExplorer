@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -21,8 +22,8 @@
                 android:id="@+id/imageViewTvShowPoster"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/tv_show_cover_height"
-                android:scaleType="matrix"
-                android:background="?attr/selectableItemBackgroundBorderless" />
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="matrix" />
 
             <TextView
                 android:id="@+id/textViewTvShowTitle"

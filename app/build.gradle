@@ -76,6 +76,7 @@ dependencies {
     implementation 'com.github.florent37:glidepalette:2.1.2'
     implementation 'jp.wasabeef:recyclerview-animators:2.3.0'
     implementation 'joda-time:joda-time:2.9.9'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
 
     kapt 'com.github.bumptech.glide:compiler:4.6.1'
     kapt 'com.google.dagger:dagger-compiler:2.15'

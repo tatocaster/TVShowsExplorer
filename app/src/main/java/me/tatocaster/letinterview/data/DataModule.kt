@@ -45,6 +45,7 @@ class DataModule {
                         }
                         .connectTimeout(30, TimeUnit.SECONDS)
                         .readTimeout(30, TimeUnit.SECONDS)
+                        .retryOnConnectionFailure(true)
                         .build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

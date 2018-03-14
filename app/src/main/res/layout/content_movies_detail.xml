@@ -8,183 +8,189 @@
     android:padding="@dimen/average_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
+    <io.supercharge.shimmerlayout.ShimmerLayout
+        android:id="@+id/shimmerLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:descendantFocusability="beforeDescendants"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:paddingBottom="@dimen/padding_4"
-            android:paddingTop="@dimen/padding_4">
-
-            <TextView
-                android:id="@+id/firstAiredDate"
-                style="@style/standardText"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:maxLines="2"
-                tools:text="2007 (Returning Series)" />
-
-            <TextView
-                android:id="@+id/runTime"
-                style="@style/standardText"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:gravity="center"
-                tools:text="22 min" />
+            android:descendantFocusability="beforeDescendants"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageViewTvShowVotes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="@color/white"
-                    app:srcCompat="@drawable/ic_thumbs_up_down_black_24px" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:paddingBottom="@dimen/padding_4"
+                android:paddingTop="@dimen/padding_4">
 
                 <TextView
-                    android:id="@+id/votes"
+                    android:id="@+id/firstAiredDate"
+                    style="@style/standardText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    tools:text="2007 (Returning Series)" />
+
+                <TextView
+                    android:id="@+id/runTime"
+                    style="@style/standardText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    tools:text="22 min" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageViewTvShowVotes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/white"
+                        app:srcCompat="@drawable/ic_thumbs_up_down_black_24px" />
+
+                    <TextView
+                        android:id="@+id/votes"
+                        style="@style/standardText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/average_margin"
+                        android:layout_marginStart="@dimen/average_margin"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        tools:text="6.8" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                style="@style/divider"
+                android:layout_width="match_parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left|start"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/padding_4"
+                android:paddingTop="@dimen/padding_4">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|left"
+                    app:srcCompat="@drawable/ic_language_white_24px" />
+
+                <TextView
+                    android:id="@+id/showLanguage"
                     style="@style/standardText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/average_margin"
-                    android:layout_marginStart="@dimen/average_margin"
-                    android:ellipsize="end"
+                    android:layout_marginLeft="@dimen/padding_4"
+                    android:layout_marginStart="@dimen/padding_4"
                     android:gravity="center_vertical"
-                    tools:text="6.8" />
+                    android:textAllCaps="true"
+                    tools:text="EN" />
             </LinearLayout>
 
-        </LinearLayout>
-
-        <View
-            style="@style/divider"
-            android:layout_width="match_parent" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="left|start"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/padding_4"
-            android:paddingTop="@dimen/padding_4">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|left"
-                app:srcCompat="@drawable/ic_language_white_24px" />
+            <View
+                style="@style/divider"
+                android:layout_width="match_parent" />
 
             <TextView
-                android:id="@+id/showLanguage"
+                android:id="@+id/overview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_4"
+                android:paddingBottom="@dimen/padding_4"
+                android:paddingTop="@dimen/padding_4"
+                android:textAppearance="@style/secondaryText"
+                android:textSize="13sp"
+                tools:text="A multi-line description of this show. Which is rather lenghty." />
+
+            <View
+                style="@style/divider"
+                android:layout_width="match_parent" />
+
+
+            <TextView
                 style="@style/standardText"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/padding_4"
-                android:layout_marginStart="@dimen/padding_4"
-                android:gravity="center_vertical"
-                android:textAllCaps="true"
-                tools:text="EN" />
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_4"
+                android:text="@string/genres" />
+
+            <TextView
+                android:id="@+id/textViewShowGenres"
+                style="@style/secondaryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textIsSelectable="true"
+                tools:text="Comedy, Romance" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/average_margin"
+                android:text="@string/country"
+                android:textAppearance="@style/standardText" />
+
+            <TextView
+                android:id="@+id/textViewShowReleaseCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_4"
+                android:textAppearance="@style/secondaryText"
+                android:textIsSelectable="true"
+                tools:text="USA" />
+
+            <View
+                style="@style/divider"
+                android:layout_width="match_parent" />
+
+
+            <!-- Seasons -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/average_margin"
+                android:text="@string/seasons"
+                android:textAppearance="@style/standardText"
+                tools:text="@string/seasons" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/seasonsList"
+                android:layout_width="match_parent"
+                android:layout_height="220dp" />
+
+            <!-- Similar Shows -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/average_margin"
+                android:text="@string/similar_shows"
+                android:textAppearance="@style/standardText"
+                tools:text="@string/similar_shows" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/similarShowsList"
+                android:layout_width="match_parent"
+                android:layout_height="220dp" />
         </LinearLayout>
-
-        <View
-            style="@style/divider"
-            android:layout_width="match_parent" />
-
-        <TextView
-            android:id="@+id/overview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/padding_4"
-            android:paddingBottom="@dimen/padding_4"
-            android:paddingTop="@dimen/padding_4"
-            android:textAppearance="@style/secondaryText"
-            android:textSize="13sp"
-            tools:text="A multi-line description of this show. Which is rather lenghty." />
-
-        <View
-            style="@style/divider"
-            android:layout_width="match_parent" />
-
-
-        <TextView
-            style="@style/standardText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/padding_4"
-            android:text="@string/genres" />
-
-        <TextView
-            android:id="@+id/textViewShowGenres"
-            style="@style/secondaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            tools:text="Comedy, Romance" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/average_margin"
-            android:text="@string/country"
-            android:textAppearance="@style/standardText" />
-
-        <TextView
-            android:id="@+id/textViewShowReleaseCountry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_4"
-            android:textAppearance="@style/secondaryText"
-            android:textIsSelectable="true"
-            tools:text="USA" />
-
-        <View
-            style="@style/divider"
-            android:layout_width="match_parent" />
-
-
-        <!-- Seasons -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/average_margin"
-            android:text="@string/seasons"
-            android:textAppearance="@style/standardText"
-            tools:text="@string/seasons" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/seasonsList"
-            android:layout_width="match_parent"
-            android:layout_height="220dp" />
-
-        <!-- Similar Shows -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/average_margin"
-            android:text="@string/similar_shows"
-            android:textAppearance="@style/standardText"
-            tools:text="@string/similar_shows" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/similarShowsList"
-            android:layout_width="match_parent"
-            android:layout_height="220dp" />
-    </LinearLayout>
+    </io.supercharge.shimmerlayout.ShimmerLayout>
 
 </android.support.v4.widget.NestedScrollView>
