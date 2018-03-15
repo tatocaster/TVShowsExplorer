@@ -57,7 +57,7 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
     }
 
     private fun setUpRecyclerView() {
-        adapter = MoviesListAdapter(this, { _, item, backdropColor ->
+        adapter = MoviesListAdapter(this, { item, backdropColor ->
             navigateToDetailsScreen(item.id, backdropColor)
         }, false)
         moviesList.adapter = adapter

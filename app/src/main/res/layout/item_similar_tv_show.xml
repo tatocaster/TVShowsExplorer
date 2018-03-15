@@ -18,14 +18,14 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageViewTvShowPoster"
+                android:id="@+id/imageViewTvShowPoster_similar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="centerCrop" />
 
             <TextView
-                android:id="@+id/textViewTvShowTitle"
+                android:id="@+id/textViewTvShowTitle_similar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/tv_show_title_height"
                 android:layout_alignParentBottom="true"

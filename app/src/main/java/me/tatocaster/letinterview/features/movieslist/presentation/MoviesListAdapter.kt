@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.florent37.glidepalette.GlidePalette
+import kotlinx.android.synthetic.main.item_similar_tv_show.view.*
 import kotlinx.android.synthetic.main.item_tv_show.view.*
 import me.tatocaster.letinterview.R
 import me.tatocaster.letinterview.entity.Pallete
@@ -16,7 +17,7 @@ import org.joda.time.format.DateTimeFormat
 import java.util.*
 
 class MoviesListAdapter(private val context: Context,
-                        private val listener: (Int, TvShow, Pallete) -> Unit,
+                        private val listener: (TvShow, Pallete) -> Unit,
                         private val similarShows: Boolean = false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val tvShowsData = arrayListOf<TvShow>()
     private val TYPE_SIMILAR_SHOW = 1
@@ -52,9 +53,9 @@ class MoviesListAdapter(private val context: Context,
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = tvShowsData[position]
         if (holder.itemViewType == TYPE_SIMILAR_SHOW)
-            (holder as SimilarShowsViewHolder).bindView(position, item)
+            (holder as SimilarShowsViewHolder).bindView(item)
         else
-            (holder as ViewHolder).bindView(position, item)
+            (holder as ViewHolder).bindView(item)
     }
 
     override fun getItemCount(): Int {
@@ -64,9 +65,9 @@ class MoviesListAdapter(private val context: Context,
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var palleteColor: Pallete = Pallete()
 
-        fun bindView(position: Int, item: TvShow) {
+        fun bindView(item: TvShow) {
             itemView.setOnClickListener({ _ ->
-                listener(position, item, palleteColor)
+                listener(item, palleteColor)
             })
 
             val formatter = DateTimeFormat.forPattern("yyyy-MM-dd")
@@ -94,12 +95,12 @@ class MoviesListAdapter(private val context: Context,
 
     inner class SimilarShowsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var palleteColor: Pallete = Pallete()
-        fun bindView(position: Int, item: TvShow) {
+        fun bindView(item: TvShow) {
             itemView.setOnClickListener({ _ ->
-                listener(position, item, palleteColor)
+                listener(item, palleteColor)
             })
 
-            itemView.textViewTvShowTitle.text = item.name
+            itemView.textViewTvShowTitle_similar.text = item.name
             val url = "https://image.tmdb.org/t/p/w300/${item.posterPath}"
             GlideApp.with(context)
                     .load(url)
@@ -111,7 +112,7 @@ class MoviesListAdapter(private val context: Context,
                                 palleteColor.textColor = swatch?.titleTextColor ?: ContextCompat.getColor(context, R.color.textColor)
                             })
                     )
-                    .into(itemView.imageViewTvShowPoster)
+                    .into(itemView.imageViewTvShowPoster_similar)
         }
 
     }

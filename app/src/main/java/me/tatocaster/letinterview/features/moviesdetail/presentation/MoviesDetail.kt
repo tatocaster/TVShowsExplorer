@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
+import android.view.MenuItem
 import android.view.animation.OvershootInterpolator
 import com.bumptech.glide.Glide
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
@@ -35,9 +36,9 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
     @Inject
     lateinit var presenter: MoviesDetailContract.Presenter
 
-    private var adapter: MoviesListAdapter = MoviesListAdapter(this, { _, item, backdropColor ->
+    private var adapter: MoviesListAdapter = MoviesListAdapter(this, { item, backdropColor ->
         MoviesDetail.startActivity(this, item.id, backdropColor)
-        finish()
+        supportFinishAfterTransition()
     }, true)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -146,6 +147,17 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+        // Respond to the action bar's Up/Home button
+            android.R.id.home -> {
+                supportFinishAfterTransition()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {
