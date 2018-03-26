@@ -1,7 +1,7 @@
 package me.tatocaster.letinterview.features.moviesdetail.presentation
 
-import me.tatocaster.letinterview.entity.TvShow
-import me.tatocaster.letinterview.entity.TvShowDetail
+import me.tatocaster.letinterview.features.movieslist.model.TvShow
+import me.tatocaster.letinterview.features.moviesdetail.model.TvShowDetail
 
 interface MoviesDetailContract {
     interface View {

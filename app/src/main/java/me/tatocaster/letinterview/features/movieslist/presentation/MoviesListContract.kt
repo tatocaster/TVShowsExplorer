@@ -1,7 +1,7 @@
 package me.tatocaster.letinterview.features.movieslist.presentation
 
 import me.tatocaster.letinterview.entity.Pallete
-import me.tatocaster.letinterview.entity.TvShow
+import me.tatocaster.letinterview.features.movieslist.model.TvShow
 
 interface MoviesListContract {
     interface View {
@@ -10,6 +10,8 @@ interface MoviesListContract {
         fun dataLoaded(shows: ArrayList<TvShow>)
 
         fun navigateToDetailsScreen(id : Int, backDropColor: Pallete)
+
+        fun showDatePicker()
     }
 
     interface Presenter {
@@ -18,6 +20,8 @@ interface MoviesListContract {
         fun newPageRequested()
 
         fun refreshData()
+
+        fun filterByDate(year : Int)
 
         fun detach()
 

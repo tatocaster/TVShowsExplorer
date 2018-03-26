@@ -1,4 +1,4 @@
-package me.tatocaster.letinterview.entity
+package me.tatocaster.letinterview.features.moviesdetail.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -4,7 +4,7 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import me.tatocaster.letinterview.data.api.ApiService
 import me.tatocaster.letinterview.data.api.response.MoviesResponse
-import me.tatocaster.letinterview.entity.TvShow
+import me.tatocaster.letinterview.features.movieslist.model.TvShow
 import javax.inject.Inject
 
 interface MoviesListUseCase {

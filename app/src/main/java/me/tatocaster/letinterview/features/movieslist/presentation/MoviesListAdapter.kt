@@ -2,6 +2,8 @@ package me.tatocaster.letinterview.features.movieslist.presentation
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
+import android.support.v7.recyclerview.extensions.ListAdapter
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,21 +13,20 @@ import kotlinx.android.synthetic.main.item_similar_tv_show.view.*
 import kotlinx.android.synthetic.main.item_tv_show.view.*
 import me.tatocaster.letinterview.R
 import me.tatocaster.letinterview.entity.Pallete
-import me.tatocaster.letinterview.entity.TvShow
+import me.tatocaster.letinterview.features.movieslist.model.TvShow
 import me.tatocaster.letinterview.utils.GlideApp
 import org.joda.time.format.DateTimeFormat
-import java.util.*
 
 class MoviesListAdapter(private val context: Context,
                         private val listener: (TvShow, Pallete) -> Unit,
-                        private val similarShows: Boolean = false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+                        private val similarShows: Boolean = false) : ListAdapter<TvShow, RecyclerView.ViewHolder>(TaskDiffCallback()) {
     private val tvShowsData = arrayListOf<TvShow>()
     private val TYPE_SIMILAR_SHOW = 1
     private val TYPE_SHOW = 2
 
-    fun updateData(data: ArrayList<TvShow>) {
+    override fun submitList(data: MutableList<TvShow>) {
         when {
-            tvShowsData.isNotEmpty() && (tvShowsData[0].name != data[0].name) -> {
+            (tvShowsData.isNotEmpty() && data.isNotEmpty()) && (tvShowsData[0].name != data[0].name) -> {
                 val tvShowsSize = tvShowsData.size
                 tvShowsData.addAll(data)
                 notifyItemRangeInserted(tvShowsSize, data.size)
@@ -115,5 +116,15 @@ class MoviesListAdapter(private val context: Context,
                     .into(itemView.imageViewTvShowPoster_similar)
         }
 
+    }
+}
+
+class TaskDiffCallback : DiffUtil.ItemCallback<TvShow>() {
+    override fun areItemsTheSame(oldItem: TvShow?, newItem: TvShow?): Boolean {
+        return oldItem?.id == newItem?.id
+    }
+
+    override fun areContentsTheSame(oldItem: TvShow?, newItem: TvShow?): Boolean {
+        return oldItem == newItem
     }
 }

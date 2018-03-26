@@ -1,21 +1,24 @@
 package me.tatocaster.letinterview.features.movieslist.presentation
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.animation.OvershootInterpolator
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
+import kotlinx.android.synthetic.main.activity_movies_list.*
 import kotlinx.android.synthetic.main.content_movies_list.*
 import me.tatocaster.letinterview.App
 import me.tatocaster.letinterview.AppComponent
 import me.tatocaster.letinterview.R
 import me.tatocaster.letinterview.entity.Pallete
-import me.tatocaster.letinterview.entity.TvShow
 import me.tatocaster.letinterview.features.moviesdetail.presentation.MoviesDetail
+import me.tatocaster.letinterview.features.movieslist.model.TvShow
 import me.tatocaster.letinterview.utils.GridSpacingItemDecoration
 import me.tatocaster.letinterview.utils.dpToPx
 import me.tatocaster.letinterview.utils.showErrorAlert
+import java.util.*
 import javax.inject.Inject
 
 
@@ -54,6 +57,10 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
 
         setupScopeGraph(App.getAppContext(this).appComponent)
         setUpRecyclerView()
+
+        fab.setOnClickListener {
+            showDatePicker()
+        }
     }
 
     private fun setUpRecyclerView() {
@@ -86,7 +93,7 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
     override fun dataLoaded(shows: ArrayList<TvShow>) {
         swipeRefreshLayout.isRefreshing = false
         newPageRequestAvailable = true
-        adapter.updateData(shows)
+        adapter.submitList(shows)
     }
 
     override fun navigateToDetailsScreen(id: Int, backDropColor: Pallete) {
@@ -100,6 +107,13 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
             swipeRefreshLayout.isRefreshing = true
             mainPresenter.attach()
         })
+    }
+
+    override fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+        DatePickerDialog(this, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+            mainPresenter.filterByDate(year)
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
     }
 
     override fun onPause() {

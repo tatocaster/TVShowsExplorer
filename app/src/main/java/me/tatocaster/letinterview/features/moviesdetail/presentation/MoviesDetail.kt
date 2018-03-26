@@ -20,9 +20,9 @@ import me.tatocaster.letinterview.App
 import me.tatocaster.letinterview.AppComponent
 import me.tatocaster.letinterview.R
 import me.tatocaster.letinterview.entity.Pallete
-import me.tatocaster.letinterview.entity.Season
-import me.tatocaster.letinterview.entity.TvShow
-import me.tatocaster.letinterview.entity.TvShowDetail
+import me.tatocaster.letinterview.features.moviesdetail.model.Season
+import me.tatocaster.letinterview.features.moviesdetail.model.TvShowDetail
+import me.tatocaster.letinterview.features.movieslist.model.TvShow
 import me.tatocaster.letinterview.features.movieslist.presentation.MoviesListAdapter
 import me.tatocaster.letinterview.utils.showErrorAlert
 import org.joda.time.format.DateTimeFormat
@@ -86,7 +86,7 @@ class MoviesDetail : AppCompatActivity(), MoviesDetailContract.View {
 
     override fun similarShowsLoaded(shows: ArrayList<TvShow>) {
         similarShowsList.adapter = adapter
-        adapter.updateData(shows)
+        adapter.submitList(shows)
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         similarShowsList.layoutManager = layoutManager
 

@@ -3,8 +3,9 @@ package me.tatocaster.letinterview.features.movieslist.presentation
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import me.tatocaster.letinterview.entity.Pallete
-import me.tatocaster.letinterview.entity.TvShow
+import me.tatocaster.letinterview.features.movieslist.model.TvShow
 import me.tatocaster.letinterview.features.movieslist.usecase.MoviesListUseCase
+import org.joda.time.format.DateTimeFormat
 import javax.inject.Inject
 
 class MoviesListPresenter @Inject constructor(private var view: MoviesListContract.View,
@@ -40,6 +41,14 @@ class MoviesListPresenter @Inject constructor(private var view: MoviesListContra
     override fun refreshData() {
         page = 1
         newPageRequested()
+    }
+
+    override fun filterByDate(year: Int) {
+        val formatter = DateTimeFormat.forPattern("yyyy-MM-dd")
+        val data = cachedData.filter {
+            formatter.parseLocalDate(it.firstAirDate).year == year
+        } as ArrayList<TvShow>
+        view.dataLoaded(data)
     }
 
     override fun tvShowSelected(id: Int, backDropColor: Pallete) {
