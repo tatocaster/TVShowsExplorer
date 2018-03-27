@@ -27,9 +27,15 @@ class MoviesListAdapter(private val context: Context,
     override fun submitList(data: MutableList<TvShow>) {
         when {
             (tvShowsData.isNotEmpty() && data.isNotEmpty()) && (tvShowsData[0].name != data[0].name) -> {
-                val tvShowsSize = tvShowsData.size
-                tvShowsData.addAll(data)
-                notifyItemRangeInserted(tvShowsSize, data.size)
+                if (data.size <= tvShowsData.size) {
+                    tvShowsData.clear()
+                    tvShowsData.addAll(data)
+                    notifyDataSetChanged()
+                } else {
+                    val tvShowsSize = tvShowsData.size
+                    tvShowsData.addAll(data)
+                    notifyItemRangeInserted(tvShowsSize, data.size)
+                }
             }
             else -> { // if refreshed and first items are the same
                 tvShowsData.clear()
