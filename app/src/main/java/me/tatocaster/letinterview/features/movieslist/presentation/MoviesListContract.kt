@@ -7,11 +7,13 @@ interface MoviesListContract {
     interface View {
         fun showError(message: String)
 
-        fun dataLoaded(shows: ArrayList<TvShow>)
+        fun dataLoaded(shows: MutableList<TvShow>)
 
-        fun navigateToDetailsScreen(id : Int, backDropColor: Pallete)
+        fun navigateToDetailsScreen(id: Int, backDropColor: Pallete)
 
         fun showDatePicker()
+
+        fun dataFiltered(shows: MutableList<TvShow>)
     }
 
     interface Presenter {
@@ -21,10 +23,10 @@ interface MoviesListContract {
 
         fun refreshData()
 
-        fun filterByDate(year : Int)
+        fun filterByDate(year: Int)
 
         fun detach()
 
-        fun tvShowSelected(id : Int,backDropColor: Pallete)
+        fun tvShowSelected(id: Int, backDropColor: Pallete)
     }
 }

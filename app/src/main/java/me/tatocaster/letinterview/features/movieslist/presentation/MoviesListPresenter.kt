@@ -48,7 +48,7 @@ class MoviesListPresenter @Inject constructor(private var view: MoviesListContra
         val data = cachedData.filter {
             formatter.parseLocalDate(it.firstAirDate).year == year
         } as ArrayList<TvShow>
-        view.dataLoaded(data)
+        view.dataFiltered(data)
     }
 
     override fun tvShowSelected(id: Int, backDropColor: Pallete) {

@@ -90,10 +90,14 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
         showErrorAlert(this, "", message)
     }
 
-    override fun dataLoaded(shows: ArrayList<TvShow>) {
+    override fun dataLoaded(shows: MutableList<TvShow>) {
         swipeRefreshLayout.isRefreshing = false
         newPageRequestAvailable = true
         adapter.submitList(shows)
+    }
+
+    override fun dataFiltered(shows: MutableList<TvShow>) {
+        adapter.displayFilteredData(shows)
     }
 
     override fun navigateToDetailsScreen(id: Int, backDropColor: Pallete) {
