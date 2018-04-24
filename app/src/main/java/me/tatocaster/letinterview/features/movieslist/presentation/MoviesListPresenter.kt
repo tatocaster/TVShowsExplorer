@@ -3,8 +3,8 @@ package me.tatocaster.letinterview.features.movieslist.presentation
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import me.tatocaster.letinterview.entity.Pallete
-import me.tatocaster.letinterview.features.movieslist.model.TvShow
-import me.tatocaster.letinterview.features.movieslist.usecase.MoviesListUseCase
+import me.tatocaster.letinterview.features.movieslist.domain.model.TvShow
+import me.tatocaster.letinterview.features.movieslist.domain.usecase.MoviesListUseCase
 import org.joda.time.format.DateTimeFormat
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ class MoviesListPresenter @Inject constructor(private var view: MoviesListContra
     private var page = 1
     private var cachedData = arrayListOf<TvShow>()
 
-    override fun attach() {
+    override fun start() {
         if (cachedData.isEmpty())
             newPageRequested()
         else

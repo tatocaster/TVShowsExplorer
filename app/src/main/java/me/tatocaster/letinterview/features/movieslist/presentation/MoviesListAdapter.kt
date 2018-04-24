@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_similar_tv_show.view.*
 import kotlinx.android.synthetic.main.item_tv_show.view.*
 import me.tatocaster.letinterview.R
 import me.tatocaster.letinterview.entity.Pallete
-import me.tatocaster.letinterview.features.movieslist.model.TvShow
+import me.tatocaster.letinterview.features.movieslist.domain.model.TvShow
 import me.tatocaster.letinterview.utils.GlideApp
 import org.joda.time.format.DateTimeFormat
 

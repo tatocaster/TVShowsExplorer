@@ -1,10 +1,10 @@
-package me.tatocaster.letinterview.features.movieslist.usecase
+package me.tatocaster.letinterview.features.movieslist.domain.usecase
 
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import me.tatocaster.letinterview.data.api.ApiService
 import me.tatocaster.letinterview.data.api.response.MoviesResponse
-import me.tatocaster.letinterview.features.movieslist.model.TvShow
+import me.tatocaster.letinterview.features.movieslist.domain.model.TvShow
 import javax.inject.Inject
 
 interface MoviesListUseCase {

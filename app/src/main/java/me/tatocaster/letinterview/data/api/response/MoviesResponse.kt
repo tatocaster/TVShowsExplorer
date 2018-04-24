@@ -1,7 +1,7 @@
 package me.tatocaster.letinterview.data.api.response
 
 import com.google.gson.annotations.SerializedName
-import me.tatocaster.letinterview.features.movieslist.model.TvShow
+import me.tatocaster.letinterview.features.movieslist.domain.model.TvShow
 
 data class MoviesResponse(
         @SerializedName("page")

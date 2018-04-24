@@ -1,4 +1,4 @@
-package me.tatocaster.letinterview.features.moviesdetail.usecase
+package me.tatocaster.letinterview.features.moviesdetail.domain.usecase
 
 import dagger.Module
 import dagger.Provides

@@ -1,7 +1,8 @@
 package me.tatocaster.letinterview.features.moviesdetail.presentation
 
-import me.tatocaster.letinterview.features.movieslist.model.TvShow
-import me.tatocaster.letinterview.features.moviesdetail.model.TvShowDetail
+import me.tatocaster.letinterview.BasePresenter
+import me.tatocaster.letinterview.features.moviesdetail.domain.model.TvShowDetail
+import me.tatocaster.letinterview.features.movieslist.domain.model.TvShow
 
 interface MoviesDetailContract {
     interface View {
@@ -12,7 +13,7 @@ interface MoviesDetailContract {
         fun similarShowsLoaded(shows: ArrayList<TvShow>)
     }
 
-    interface Presenter {
+    interface Presenter : BasePresenter{
         fun setCurrentTvShowId(id: Int)
 
         fun detach()

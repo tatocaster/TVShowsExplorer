@@ -20,9 +20,9 @@ import me.tatocaster.letinterview.App
 import me.tatocaster.letinterview.AppComponent
 import me.tatocaster.letinterview.R
 import me.tatocaster.letinterview.entity.Pallete
-import me.tatocaster.letinterview.features.moviesdetail.model.Season
-import me.tatocaster.letinterview.features.moviesdetail.model.TvShowDetail
-import me.tatocaster.letinterview.features.movieslist.model.TvShow
+import me.tatocaster.letinterview.features.moviesdetail.domain.model.Season
+import me.tatocaster.letinterview.features.moviesdetail.domain.model.TvShowDetail
+import me.tatocaster.letinterview.features.movieslist.domain.model.TvShow
 import me.tatocaster.letinterview.features.movieslist.presentation.MoviesListAdapter
 import me.tatocaster.letinterview.utils.showErrorAlert
 import org.joda.time.format.DateTimeFormat

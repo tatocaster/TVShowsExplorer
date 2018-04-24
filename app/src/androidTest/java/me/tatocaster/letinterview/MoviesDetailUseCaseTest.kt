@@ -1,8 +1,8 @@
 package me.tatocaster.letinterview
 
 import me.tatocaster.letinterview.data.DataModule
-import me.tatocaster.letinterview.features.moviesdetail.usecase.MoviesDetailUseCase
-import me.tatocaster.letinterview.features.moviesdetail.usecase.MoviesDetailUseCaseImpl
+import me.tatocaster.letinterview.features.moviesdetail.domain.usecase.MoviesDetailUseCase
+import me.tatocaster.letinterview.features.moviesdetail.domain.usecase.MoviesDetailUseCaseImpl
 import org.junit.Before
 import org.junit.Test
 

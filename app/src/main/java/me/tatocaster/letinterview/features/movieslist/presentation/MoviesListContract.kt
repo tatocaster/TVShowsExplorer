@@ -1,7 +1,8 @@
 package me.tatocaster.letinterview.features.movieslist.presentation
 
+import me.tatocaster.letinterview.BasePresenter
 import me.tatocaster.letinterview.entity.Pallete
-import me.tatocaster.letinterview.features.movieslist.model.TvShow
+import me.tatocaster.letinterview.features.movieslist.domain.model.TvShow
 
 interface MoviesListContract {
     interface View {
@@ -16,8 +17,7 @@ interface MoviesListContract {
         fun dataFiltered(shows: MutableList<TvShow>)
     }
 
-    interface Presenter {
-        fun attach()
+    interface Presenter : BasePresenter {
 
         fun newPageRequested()
 

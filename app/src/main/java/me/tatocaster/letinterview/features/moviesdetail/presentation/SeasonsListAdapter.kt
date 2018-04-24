@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.github.florent37.glidepalette.GlidePalette
 import kotlinx.android.synthetic.main.item_season.view.*
 import me.tatocaster.letinterview.R
-import me.tatocaster.letinterview.features.moviesdetail.model.Season
+import me.tatocaster.letinterview.features.moviesdetail.domain.model.Season
 import me.tatocaster.letinterview.utils.GlideApp
 import org.joda.time.format.DateTimeFormat
 

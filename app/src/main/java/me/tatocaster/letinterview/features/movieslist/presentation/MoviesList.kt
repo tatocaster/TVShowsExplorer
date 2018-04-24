@@ -14,7 +14,7 @@ import me.tatocaster.letinterview.AppComponent
 import me.tatocaster.letinterview.R
 import me.tatocaster.letinterview.entity.Pallete
 import me.tatocaster.letinterview.features.moviesdetail.presentation.MoviesDetail
-import me.tatocaster.letinterview.features.movieslist.model.TvShow
+import me.tatocaster.letinterview.features.movieslist.domain.model.TvShow
 import me.tatocaster.letinterview.utils.GridSpacingItemDecoration
 import me.tatocaster.letinterview.utils.dpToPx
 import me.tatocaster.letinterview.utils.showErrorAlert
@@ -109,7 +109,7 @@ class MoviesList : AppCompatActivity(), MoviesListContract.View {
 
         swipeRefreshLayout.post({
             swipeRefreshLayout.isRefreshing = true
-            mainPresenter.attach()
+            mainPresenter.start()
         })
     }
 

@@ -2,7 +2,7 @@ package me.tatocaster.letinterview.features.moviesdetail.presentation
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import me.tatocaster.letinterview.features.moviesdetail.usecase.MoviesDetailUseCase
+import me.tatocaster.letinterview.features.moviesdetail.domain.usecase.MoviesDetailUseCase
 import javax.inject.Inject
 
 class MoviesDetailPresenter @Inject constructor(private var view: MoviesDetailContract.View,
@@ -10,6 +10,10 @@ class MoviesDetailPresenter @Inject constructor(private var view: MoviesDetailCo
     private val disposables: CompositeDisposable = CompositeDisposable()
     private var currentTvShowId: Int = 0
     private var page = 1
+
+    override fun start() {
+
+    }
 
     override fun loadSimilarShows() {
         disposables.add(
